@@ -59,9 +59,18 @@ function deleteTask(index) {
   localStorage.setItem("New todo", JSON.stringify(listArray));
   showTasks();
 }
+inputBox.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    let userEnteredValue = inputBox.value;
 
-// deleteAllBtn.onclick = () => {
-//   listArray = [];
-//   localStorage.setItem("New todo", JSON.stringify(listArray));
-//   showTasks();
-// };
+    let getLocalStorageData = localStorage.getItem("New todo");
+    if (getLocalStorageData == null) {
+      listArray = [];
+    } else {
+      listArray = JSON.parse(getLocalStorageData);
+    }
+
+    listArray.push(userEnteredValue);
+    localStorage.setItem("New todo", JSON.stringify(listArray));
+  }
+});
