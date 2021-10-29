@@ -39,7 +39,30 @@ second();
 ```
 
  Câu 3 :
-Deep copy tức là tạo mới một biến có cùng giá trị và được cắt đứt quan hệ hoàn toàn với biến được copy. 
+Deep copy tức là tạo mới một biến có cùng giá trị và được cắt đứt quan hệ hoàn toàn với biến được copy : 
+```
+const obj = {a:1,b:2,c:{d:3}};
+const deepClone = JSON.parse(JSON.stringify(obj));
+console.log(deepClone); // {a:1,b:2,c:3};
+```
+Sự hạn chế khi dùng deep copy trong JSON
+ Thêm một chi tiết nữa đó là một nhược điểm khi sử dụng deep copy JSON.parse() và JSON.stringify() đó là đôi khi bị miss những tham số của bạn, nêu tham số đó bạn gán underfined hoặc NaN...
+
+ Ví dụ: 
+ ```
+JSON.parse(
+  JSON.stringify({
+    a: new Date(),
+    b: NaN,
+    c: new Function(),
+    d: undefined,
+    e: function() {},
+    f: Number,
+    g: false,
+    h: Infinity
+  })
+)
+```
 
 Shallow copying nhiệm vụ của nó chỉ copy những giá trị nông nghĩa là nó chỉ sao chép các giá trị đối tượng bình thường nhưng các giá trị lồng nhau vẫn sử dụng reference đến một đối tượng ban đầu : 
 ```
@@ -51,9 +74,3 @@ console.log(shallowClone); // nhưng object mà chúng ta clone ra cũng bị th
 
 
 
-``` const macbooks = ['macbook2015', { model: 'macbook2014' }, 'macbook2017'];
-const apples = [...macbooks];
-apples[0] = 'air';
-apples[1].model = 'm1';
-console.log(macbooks) // ['macbook2015', { model: 'm1' }, 'macbook2017']
-console.log(apples) // ['air', { model: 'm1' }, 'macbook2017'] ```
