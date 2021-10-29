@@ -6,7 +6,7 @@ Event Loop là cơ chế giúp Javascript có thể thực hiện nhiều thao t
 
 Đoạn code sau chữ Một lại hiện sau chữ Hai tại vì đoạn code chữ Một là một web apis, nó sẽ đẩy qua xử lý ở web apis ( những tác vụ tốn thời gian nếu không xử lý ở web apis sẽ bị block ở Call stack , không thể làm cái khác được) và bắt đầu chạy timeout, cùng lúc đó dòng code sẽ tiếp tục chạy chữ Hai, sau khi chữ Một xong timeout thì sẽ bỏ vào Callback Queue và Event loop sẽ đưa nó vào lại Call stack để tiếp tục thực hiện dòng lệnh console.log đó . Chính vì thế mà chữ Một hiện sau chữ Hai
 
-<!-- 
+```
 setTimeout(function() {
 console.log('Một');
 }, 0);
@@ -14,7 +14,7 @@ function second() {
 console.log('Hai');
 }
 second();
- -->
+```
 
  Câu 3 :
  Deep copy (sao chép sâu 😂) tức là tạo mới một biến có cùng giá trị và được cắt đứt quan hệ hoàn toàn với biến được copy. 
