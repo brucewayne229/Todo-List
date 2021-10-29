@@ -71,6 +71,12 @@ inputBox.addEventListener("keypress", (e) => {
     }
 
     listArray.push(userEnteredValue);
-    localStorage.setItem("New todo", JSON.stringify(listArray));
+    localStorage.setItem("New todo", JSON.stringify(listArray)); // Chuyển JSON từ dạng Object sang String
+    showTasks();
   }
 });
+// deleteAllBtn.onclick = () => {
+//   listArray = [];
+//   localStorage.setItem("New todo", JSON.stringify(listArray));
+//   showTasks();
+// };
